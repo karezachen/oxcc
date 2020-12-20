@@ -8,17 +8,18 @@ class Handle(object):
     def POST(self):
         try:
             webData = web.data()
+            webData = webData.decode()
             print("Handle Post webdata is ", webData)
             #后台打日志
             recMsg = receive.parse_xml(webData)
             if isinstance(recMsg, receive.Msg):
                 fromUser = recMsg.FromUserName
                 toUser = recMsg.ToUserName
-                print('fromUser == oi8ob1S7zabQTx3LJUk6FUUtJCj4? fromUser: ' + fromUser)
+                textContent = recMsg.Content
+                textContent = textContent.decode()
                 if recMsg.MsgType == 'text':
                     if fromUser == 'oi8ob1S7zabQTx3LJUk6FUUtJCj4':
-                        content = recMsg.Content
-                        replyMsg = reply.PunchTheClock(fromUser, toUser, content)
+                        replyMsg = reply.PunchTheClock(fromUser, toUser, textContent)
                     else:
                         content = "http://www.kareza.cn/jetbrain-activate-code.html"
                         replyMsg = reply.TextMsg(fromUser, toUser, content)

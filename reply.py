@@ -61,11 +61,8 @@ class PunchTheClock(Msg):
         self.__dict['CreateTime'] = int(time.time())
         postUrl = ("http://wx.kareza.cn:8080/lifeplus/histron/punchTheClock?job_number=%s" % content)
         urlResp = urllib.request.urlopen(postUrl)
-        print('urlResp: ' + urlResp)
-        urlResp = urlResp.decode()
-        print('urlResp: ' + urlResp)
-        urlResp = json.loads(urlResp)
-        print('urlResp: ' + urlResp)
+        urlResp = json.loads(urlResp.read())
+        print(urlResp)
         data = urlResp['data']
         print('data: ' + data)
         self.__dict['Content'] = data
