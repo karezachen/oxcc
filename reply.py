@@ -72,10 +72,8 @@ class PunchTheClock(Msg):
                 <ToUserName><![CDATA[{ToUserName}]]></ToUserName>
                 <FromUserName><![CDATA[{FromUserName}]]></FromUserName>
                 <CreateTime>{CreateTime}</CreateTime>
-                <MsgType><![CDATA[image]]></MsgType>
-                <Image>
-                <MediaId><![CDATA[{MediaId}]]></MediaId>
-                </Image>
+                <MsgType><![CDATA[text]]></MsgType>
+                <Content><![CDATA[{Content}]]></Content>
             </xml>
             """
         return XmlForm.format(**self.__dict)
