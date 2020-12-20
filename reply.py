@@ -64,6 +64,7 @@ class PunchTheClock(Msg):
         print(urlResp.read())
         urlResp = json.loads(urlResp.read())
         data = urlResp['data']
+        print(data)
         self.__dict['Content'] = data
 
     def send(self):
