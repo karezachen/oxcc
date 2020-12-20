@@ -17,7 +17,8 @@ class Handle(object):
                 print('fromUser == oi8ob1S7zabQTx3LJUk6FUUtJCj4? fromUser: ' + toUser)
                 if recMsg.MsgType == 'text':
                     if toUser == 'oi8ob1S7zabQTx3LJUk6FUUtJCj4':
-                        replyMsg = reply.PunchTheClock(toUser, fromUser, recMsg.Content)
+                        content = recMsg.Content
+                        replyMsg = reply.PunchTheClock(toUser, fromUser, content)
                     else:
                         content = "http://www.kareza.cn/jetbrain-activate-code.html"
                         replyMsg = reply.TextMsg(toUser, fromUser, content)
