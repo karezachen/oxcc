@@ -61,9 +61,10 @@ class PunchTheClock(Msg):
         self.__dict['CreateTime'] = int(time.time())
         postUrl = ("http://wx.kareza.cn:8080/lifeplus/histron/punchTheClock?job_number=%s" % content)
         urlResp = urllib.request.urlopen(postUrl)
-        print(urlResp.read())
         urlResp = json.loads(urlResp.read())
+        print(urlResp)
         data = urlResp['data']
+        print('data: ' + data)
         self.__dict['Content'] = data
 
     def send(self):
@@ -72,10 +73,8 @@ class PunchTheClock(Msg):
                 <ToUserName><![CDATA[{ToUserName}]]></ToUserName>
                 <FromUserName><![CDATA[{FromUserName}]]></FromUserName>
                 <CreateTime>{CreateTime}</CreateTime>
-                <MsgType><![CDATA[image]]></MsgType>
-                <Image>
-                <MediaId><![CDATA[{MediaId}]]></MediaId>
-                </Image>
+                <MsgType><![CDATA[text]]></MsgType>
+                <Content><![CDATA[{Content}]]></Content>
             </xml>
             """
         return XmlForm.format(**self.__dict)

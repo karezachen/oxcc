@@ -8,23 +8,25 @@ class Handle(object):
     def POST(self):
         try:
             webData = web.data()
+            webData = webData.decode()
             print("Handle Post webdata is ", webData)
             #后台打日志
             recMsg = receive.parse_xml(webData)
             if isinstance(recMsg, receive.Msg):
-                toUser = recMsg.FromUserName
-                fromUser = recMsg.ToUserName
-                print('fromUser: ' + fromUser)
+                fromUser = recMsg.FromUserName
+                toUser = recMsg.ToUserName
+                textContent = recMsg.Content
+                textContent = textContent.decode()
                 if recMsg.MsgType == 'text':
-                    if fromUser == 'kareza':
-                        replyMsg = reply.PunchTheClock(toUser, fromUser, recMsg.Content)
+                    if fromUser == 'oi8ob1S7zabQTx3LJUk6FUUtJCj4':
+                        replyMsg = reply.PunchTheClock(fromUser, toUser, textContent)
                     else:
                         content = "http://www.kareza.cn/jetbrain-activate-code.html"
-                        replyMsg = reply.TextMsg(toUser, fromUser, content)
+                        replyMsg = reply.TextMsg(fromUser, toUser, content)
                     return replyMsg.send()
                 if recMsg.MsgType == 'image':
                     mediaId = recMsg.MediaId
-                    replyMsg = reply.ImageMsg(toUser, fromUser, mediaId)
+                    replyMsg = reply.ImageMsg(fromUser, toUser, mediaId)
                     return replyMsg.send()
                 else:
                     return reply.Msg().send()
