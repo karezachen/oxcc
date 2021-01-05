@@ -59,7 +59,7 @@ class PunchTheClock(Msg):
         self.__dict['ToUserName'] = toUserName
         self.__dict['FromUserName'] = fromUserName
         self.__dict['CreateTime'] = int(time.time())
-        postUrl = ("http://wx.kareza.cn:8080/lifeplus/histron/punchTheClock?job_number=%s" % content)
+        postUrl = ("http://wx.kareza.cn:8080/lifeplus/distributewechatservices/histron?content=%s" % content)
         urlResp = urllib.request.urlopen(postUrl)
         urlResp = json.loads(urlResp.read())
         print(urlResp)

@@ -18,11 +18,7 @@ class Handle(object):
                 textContent = recMsg.Content
                 textContent = textContent.decode()
                 if recMsg.MsgType == 'text':
-                    if fromUser == 'oi8ob1S7zabQTx3LJUk6FUUtJCj4':
-                        replyMsg = reply.PunchTheClock(fromUser, toUser, textContent)
-                    else:
-                        content = "http://www.kareza.cn/jetbrain-activate-code.html"
-                        replyMsg = reply.TextMsg(fromUser, toUser, content)
+                    replyMsg = reply.PunchTheClock(fromUser, toUser, textContent)
                     return replyMsg.send()
                 if recMsg.MsgType == 'image':
                     mediaId = recMsg.MediaId
