@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 # filename: main.py
+
 import web
-from handle import Handle
+# from handle import Handle
+from authentication import Handle
 
 urls = (
-    '/wx', 'Handle',
+    '/wechat', 'Handle',
 )
 
 if __name__ == '__main__':
