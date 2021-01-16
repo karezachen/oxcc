@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-# 
 # filename: handle.py
+# author: kareza
+# email: kareza@qq.com
+# description: 转发粉丝发送的内容
+
 import hashlib
 import reply
 import receive
 import web
+
 class Handle(object):
     def POST(self):
         try:
