@@ -5,25 +5,24 @@
 # description: 转发粉丝发送的内容
 
 import hashlib
+import web
 import reply
 import receive
-import web
 
 class Handle(object):
     def POST(self):
         try:
             webData = web.data()
             webData = webData.decode()
-            print("Handle Post webdata is ", webData)
-            #后台打日志
+            print('接收到粉丝发送内容：\n', webData)
             recMsg = receive.parse_xml(webData)
             if isinstance(recMsg, receive.Msg):
                 fromUser = recMsg.FromUserName
                 toUser = recMsg.ToUserName
-                textContent = recMsg.Content
-                textContent = textContent.decode()
                 if recMsg.MsgType == 'text':
-                    replyMsg = reply.PunchTheClock(fromUser, toUser, textContent)
+                    textContent = recMsg.Content
+                    textContent = textContent.decode()
+                    replyMsg = reply.TextMsg(fromUser, toUser, textContent)
                     return replyMsg.send()
                 if recMsg.MsgType == 'image':
                     mediaId = recMsg.MediaId
@@ -32,7 +31,6 @@ class Handle(object):
                 else:
                     return reply.Msg().send()
             else:
-                print("暂且不处理")
                 return "success"
         except(Exception) as Argment:
             return Argment
