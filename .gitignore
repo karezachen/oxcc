@@ -130,3 +130,6 @@ dmypy.json
 
 # vscode
 .vscode
+
+# 服务运行日志
+logs/
