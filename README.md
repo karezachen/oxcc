@@ -1,14 +1,4 @@
-# 公众号服务
-
-## 介绍
-
-作者自用的公众号后台服务，只做粉丝发送的内容转发，不做实际的业务处理。
-
-## 正向代理
-
-因为公众号后台服务只支持80端口，所以在配置时需要通过Nginx进行正向代理，将服务代理至实际的服务地址。
-
-- [default](docs/default)
+# OXCC
 
 ## 服务验证
 
@@ -20,11 +10,8 @@
 启动服务
 
 ```shell
-sh bin/startup.sh
-```
-
-停止服务
-
-```shell
-sh bin/shutdown.sh
+python3 -m venv oxcc_env
+source oxcc_env/bin/activate
+pip install -r requirement.txt
+python handle/main.py 80
 ```
