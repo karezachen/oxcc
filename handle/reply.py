@@ -1,6 +1,7 @@
 import time
 import urllib.request
 import json
+import traceback
 
 import chatgpt
 
@@ -17,7 +18,10 @@ class TextMsg(Msg):
         self.__dict['ToUserName'] = toUserName
         self.__dict['FromUserName'] = fromUserName
         self.__dict['CreateTime'] = int(time.time())
-        self.__dict['Content'] = chat_with_gpt(content)
+        try:
+            self.__dict['Content'] = chatgpt.chat_with_gpt(content)
+        except Exception as e:
+            traceback.print_exc()
 
     def send(self):
         XmlForm = """
