@@ -1,12 +1,8 @@
-# -*- coding: utf-8 -*-#
-# filename: reply.py
-# author: kareza
-# email: kareza@qq.com
-# description: 处理粉丝发送的内容
-
 import time
 import urllib.request
 import json
+
+import chatgpt
 
 class Msg(object):
     def __init__(self):
@@ -21,15 +17,7 @@ class TextMsg(Msg):
         self.__dict['ToUserName'] = toUserName
         self.__dict['FromUserName'] = fromUserName
         self.__dict['CreateTime'] = int(time.time())
-        # postUrl = ("http://127.0.0.1:8081/histron?content=%s" % content)
-        # print('postUrl', postUrl)
-        # urlResp = urllib.request.urlopen(postUrl)
-        # urlResp = json.loads(urlResp.read())
-        # print(urlResp)
-        # data = urlResp['data']
-        # print('data: ' + data)
-        # self.__dict['Content'] = data
-        self.__dict['Content'] = 'http://www.kareza.cn/jetbrain-activate-code.html'
+        self.__dict['Content'] = chat_with_gpt(content)
 
     def send(self):
         XmlForm = """
