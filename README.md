@@ -15,3 +15,8 @@ source oxcc_env/bin/activate
 pip install -r requirement.txt
 python handle/main.py 80
 ```
+
+停止服务
+```shell
+ps aux | grep "handle/main.py" | grep -v grep | awk '{print $2}' | xargs kill -9
+```

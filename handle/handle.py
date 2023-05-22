@@ -20,6 +20,8 @@ class Handle(object):
                 fromUser = recMsg.FromUserName
                 toUser = recMsg.ToUserName
                 if recMsg.MsgType == 'text':
+                    # 避免超过5秒未回复，直接回复 success
+                    reply.Msg().send()
                     textContent = recMsg.Content
                     textContent = textContent.decode()
                     replyMsg = reply.TextMsg(fromUser, toUser, textContent)
